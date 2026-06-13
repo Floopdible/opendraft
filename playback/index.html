@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenDraft — Document History Playback</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="status">Loading session data...</div>
+
+<div id="main-ui">
+  <div class="toolbar">
+    <button id="reset-btn" title="Go to start">⏮</button>
+    <button id="skip-back" title="Back 50 revisions">⏪</button>
+    <button id="play-btn" title="Play">▶</button>
+    <button id="skip-fwd" title="Forward 50 revisions">⏩</button>
+    <div class="sep"></div>
+    <button id="slow-btn" title="Slow down">−</button>
+    <span id="speed-display">4x</span>
+    <button id="fwd-btn" title="Speed up">+</button>
+    <div class="sep"></div>
+    <span class="rev-label"><span id="rev-current">0</span> / <span id="rev-count">0</span></span>
+    <input type="range" id="seek-bar" min="0" max="0" value="0" step="1">
+  </div>
+
+  <div id="content"></div>
+
+  <div id="timeline"></div>
+
+  <div class="stats-bar">
+    <span id="stats-text">Processing...</span>
+  </div>
+</div>
+
+<script src="document-builder.js"></script>
+<script src="renderer.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
