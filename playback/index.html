@@ -11,25 +11,69 @@
 
 <div id="main-ui">
   <div class="toolbar">
-    <button id="reset-btn" title="Go to start">⏮</button>
-    <button id="skip-back" title="Back 50 revisions">⏪</button>
-    <button id="play-btn" title="Play">▶</button>
-    <button id="skip-fwd" title="Forward 50 revisions">⏩</button>
+    <button id="reset-btn" title="Go to start">
+      <svg viewBox="0 0 20 20" width="16" height="16"><path d="M4 4h2v12H4zM14 4l-8 6 8 6z" fill="currentColor"/></svg>
+    </button>
+    <button id="skip-back" title="Back 50 revisions">
+      <svg viewBox="0 0 20 20" width="16" height="16"><path d="M12 4l-8 6 8 6z" fill="currentColor"/></svg>
+    </button>
+    <button id="play-btn" title="Play">
+      <svg id="play-icon" viewBox="0 0 20 20" width="16" height="16"><path d="M6 4l10 6-10 6z" fill="currentColor"/></svg>
+    </button>
+    <button id="skip-fwd" title="Forward 50 revisions">
+      <svg viewBox="0 0 20 20" width="16" height="16"><path d="M8 4l8 6-8 6z" fill="currentColor"/></svg>
+    </button>
+    <button id="skip-end" title="Go to end">
+      <svg viewBox="0 0 20 20" width="16" height="16"><path d="M6 4l10 6-10 6zM16 4h2v12h-2z" fill="currentColor"/></svg>
+    </button>
     <div class="sep"></div>
-    <button id="slow-btn" title="Slow down">−</button>
+    <button id="slow-btn" title="Slow down">
+      <svg viewBox="0 0 20 20" width="14" height="14"><path d="M5 10h10" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+    </button>
     <span id="speed-display">4x</span>
-    <button id="fwd-btn" title="Speed up">+</button>
+    <button id="fwd-btn" title="Speed up">
+      <svg viewBox="0 0 20 20" width="14" height="14"><path d="M5 10h10M10 5v10" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+    </button>
     <div class="sep"></div>
-    <span class="rev-label"><span id="rev-current">0</span> / <span id="rev-count">0</span></span>
+    <span class="mode-group">
+      <span class="mode-label" data-mode="step">Step</span>
+      <label class="mode-toggle">
+        <input type="checkbox" id="mode-toggle">
+        <span class="mode-slider"></span>
+      </label>
+      <span class="mode-label" data-mode="live">Live</span>
+      <span class="mode-info" id="mode-info-btn">&#9432;</span>
+      <div class="mode-info-popup" id="mode-info-popup"><b>Step</b> — advance one rev per tick, skips idle gaps<br><b>Live</b> — plays in real-time wall-clock duration divided by speed</div>
+    </span>
+    <div class="sep"></div>
+    <span class="rev-label"><span id="rev-current">0</span> / <span id="rev-count">0</span> <span id="rev-time"></span></span>
     <input type="range" id="seek-bar" min="0" max="0" value="0" step="1">
   </div>
 
   <div id="content"></div>
 
-  <div id="timeline"></div>
+  <div id="timeline-wrap">
+    <div id="timeline-labels"><span></span><span></span><span></span></div>
+    <div id="timeline">
+      <div id="timeline-marker"></div>
+      <div id="timeline-hover-line"></div>
+      <div id="timeline-hover"></div>
+    </div>
+    <div id="timeline-legend">
+      <span class="legend-swatch" style="background:#16a34a"></span>
+      <span>Low edit rate</span>
+      <span class="legend-swatch" style="background:#eab308;margin-left:8px"></span>
+      <span>Moderate</span>
+      <span class="legend-swatch" style="background:#dc2626;margin-left:8px"></span>
+      <span>High edit rate</span>
+      <span class="legend-swatch" style="background:#d1d5db;margin-left:8px"></span>
+      <span>Idle (>5 min)</span>
+    </div>
+  </div>
 
   <div class="stats-bar">
     <span id="stats-text">Processing...</span>
+    <button id="export-btn" title="Export revision data as JSON">Export</button>
   </div>
 </div>
 
